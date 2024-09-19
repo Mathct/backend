@@ -1,7 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
+
+const userRoutes = require('./routes/user');
+
 const app = express();
+
+app.use(express.json());
 
 mongoose.connect('mongodb+srv://user:user123@mathct.zkqty.mongodb.net/?retryWrites=true&w=majority&appName=mathct',
     { useNewUrlParser: true,
@@ -57,5 +62,7 @@ app.use('/api/books', (req, res, next) => {
   ];
   res.status(200).json(books);
 });
+
+app.use('/api/auth', userRoutes);
 
 module.exports = app;

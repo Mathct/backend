@@ -7,11 +7,15 @@ const bookRoutes = require('./routes/book');
 
 const path = require('path');
 
+require('dotenv').config();
+
 const app = express();
 
 app.use(express.json());
 
-mongoose.connect('mongodb+srv://user:user123@mathct.zkqty.mongodb.net/?retryWrites=true&w=majority&appName=mathct',
+let connectLink = process.env.MONGODB_URL
+
+mongoose.connect(connectLink,
     { useNewUrlParser: true,
       useUnifiedTopology: true })
     .then(() => console.log('Connexion à MongoDB réussie !'))

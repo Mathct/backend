@@ -11,11 +11,9 @@ const finalImage = (req, res, next) => {
             .resize({ width: 800, height: 800, fit: 'inside' })
             .toFile(filepath, (err, info) => {
                 if (err) {
-                    return res.status(500).json({ error: "Image processing error" });
+                    return res.status(500).json({ error: "Erreur dans la creation de l'image!" });
                 }
 
-                
-                // Update req.file to reflect the new image details
                 req.file.filename = filename;
                 req.file.path = filepath;
 
